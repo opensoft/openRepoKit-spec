@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "components": [
+    {"name": "openRepoShape", "repository": "opensoft/openRepoShape", "path": "components/openRepoShape", "commit": "54aa69a370f319b86e1b5f304b5bb373b8b53747"},
+    {"name": "openRepoTools", "repository": "opensoft/openRepoTools", "path": "components/openRepoTools", "commit": "f87fd5a68cf3beb67f1065588a88ca0331529038"},
+    {"name": "openRepoProject", "repository": "opensoft/openRepoProject", "path": "components/openRepoProject", "commit": "961c405a085cbe4bbde3ee81670c493a6de3ca18"}
+  ]
+}
