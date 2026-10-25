@@ -17,14 +17,16 @@ documentation belong to this spec leg.
 
 Both openBenches and workBenches checkouts use the existing
 `WORKBENCHES_ROOT` launcher export and the release manifest's `workbenches`
-field. Project's explicit `--workbenches` option or an inherited
-`WORKBENCHES_ROOT` takes precedence, followed by the path saved by Kit's
-`--workbenches` installation option and then Project's existing
-`.workbenches-path` marker. Those names and installed launcher artifacts remain
-unchanged during the compatibility window.
+field. Selection precedence is explicit Project `--workbenches`, then inherited
+`WORKBENCHES_ROOT`, then the path saved by Kit's `--workbenches` installation
+option in the release manifest, then Project's existing `.workbenches-path`
+marker, and finally automatic new-first discovery. Thus an explicit Project
+option overrides a conflicting inherited environment value, and an inherited
+environment value overrides conflicting saved and marker paths. Those names and
+installed launcher artifacts remain unchanged during the compatibility window.
 
-Without an explicit, saved, or marked selection, the launcher selects the first
-candidate containing `config/bench-config.json` in this order:
+Without any of those selections, the launcher selects the first candidate
+containing `config/bench-config.json` in this order:
 
 1. `~/projects/openBenches`
 2. `~/Projects/openBenches`

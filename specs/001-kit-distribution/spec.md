@@ -27,10 +27,13 @@ The existing components retain their repositories and source identities.
    installation or verification.
 7. Preserve upstream refusals and exit statuses. Component self-installation
    through Kit launchers must refuse rather than replace managed launchers.
-8. Preserve explicit Project `--workbenches` and `WORKBENCHES_ROOT` selection,
-   then the saved release-manifest `workbenches` path and existing
-   `.workbenches-path` marker behavior. Without those selections, discover only
-   checkouts containing `config/bench-config.json`, trying `openBenches` before
+8. Preserve selection precedence in this exact order: explicit Project
+   `--workbenches`, inherited `WORKBENCHES_ROOT`, the saved release-manifest
+   `workbenches` path, the existing `.workbenches-path` marker, then automatic
+   discovery. An explicit Project option overrides a conflicting inherited
+   environment value, and an inherited environment value overrides conflicting
+   saved and marker paths. Without those selections, discover only checkouts
+   containing `config/bench-config.json`, trying `openBenches` before
    `workBenches` in each projects convention. With no `PROJECTS_DIR`, the order
    is `~/projects/openBenches`, `~/Projects/openBenches`,
    `~/projects/workBenches`, then `~/Projects/workBenches`; with `PROJECTS_DIR`,
@@ -45,12 +48,15 @@ checks exact versions and Project's routing, exercises Shape's real doctor,
 proves a source drift refuses before prefix creation, rejects unmanaged
 command collisions and verifies repeat installation and paths with spaces.
 Focused launcher fixtures cover old-only, new-only, both-present, invalid
-automatic candidates, explicit override, saved release metadata, marker
-precedence, and downstream `WORKBENCHES_ROOT` export and argument forwarding.
-Old-only selects the legacy checkout, new-only selects the new checkout, and
-both-present deterministically selects openBenches without renaming the
-legacy ABI. These checks establish Kit integration; they do not replace
-upstream suites.
+automatic candidates, explicit Project `--workbenches` overriding a conflicting
+inherited `WORKBENCHES_ROOT`, saved release metadata, marker precedence, and
+downstream `WORKBENCHES_ROOT` export and argument forwarding. One conflict
+fixture gives inherited `WORKBENCHES_ROOT`, saved release metadata,
+`.workbenches-path`, and an automatic candidate different valid paths and
+asserts that the inherited environment value wins. Old-only selects the legacy
+checkout, new-only selects the new checkout, and both-present deterministically
+selects openBenches without renaming the legacy ABI. These checks establish Kit
+integration; they do not replace upstream suites.
 
 ## Updating components
 
